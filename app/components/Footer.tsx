@@ -12,7 +12,7 @@ const Footer = () => {
           presence to the next level?
         </h1> */}
         <h1 className="heading lg:max-w-[45vw]">
-            Let's build something amazing together.
+            Let&apos;s build something amazing together.
         </h1>
         {/* <p className="text-white-200 md:mt-10 my-5 text-center">
             Let's connect!
