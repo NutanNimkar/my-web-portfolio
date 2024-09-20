@@ -113,7 +113,7 @@ export const projects = [
       "/dis.svg",
       "/python.svg",
       "/scikit-learn.svg",
-      "/pandas.svg",
+      "/Pandas.svg",
       "/numpy.svg",
     ],
     link: "https://github.com/NutanNimkar/TradingBot",
