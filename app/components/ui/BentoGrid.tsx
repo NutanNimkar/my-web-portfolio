@@ -47,7 +47,6 @@ export const BentoGridItem = ({
   spareImg?: string;
 }) => {
   const leftLists1 = ["ReactJS", "NodeJS", "SpringBoot"];
-
   const leftLists2 = ["AWS", "Python", "JavaScript"];
   const rightLists = ["Java", "MongoDB", "MySQL"];
   const [copied, setCopied] = useState(false);
@@ -74,37 +73,46 @@ export const BentoGridItem = ({
         className
       )}
       style={{
-        // background: 'linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(17,105,58,1) 36%, rgba(0,212,255,1) 100%)',
         background: "rgb(2,0,36)",
         backgroundColor:
           "linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(5,65,33,0.986453956582633) 47%, rgba(8,73,87,1) 100%)",
       }}
     >
       <div className={`${id === 6 && "flex justify-center"} h-full`}>
+        {/* Main Image */}
         <div className="w-full h-full absolute">
           {img && (
             <img
               src={img}
               alt={img}
-              className={cn(imgClassName, "object-cover object-center ")}
+              className={cn(
+                imgClassName,
+                "object-cover object-center",
+                "opacity-25 md:opacity-75 lg:opacity-100" // Adjust opacity based on screen size
+              )}
             />
           )}
         </div>
+
+        {/* Optional Spare Image */}
         <div
           className={`absolute right-0 -bottom-5 ${
             id === 5 && "w-full opacity-80"
-          } `}
+          }`}
         >
           {spareImg && (
             <img
               src={spareImg}
               alt={spareImg}
-              className="object-cover object-center w-full h-full"
+              className={cn(
+                "object-cover object-center w-full h-full",
+                "opacity-25 md:opacity-75 lg:opacity-100" // Adjust opacity for spare image
+              )}
             />
           )}
         </div>
+
         {id === 6 && (
-          // <BackgroundGradientAnimation>
           <BackgroundGradientAnimation
             gradientBackgroundStart="rgb(20, 0, 50)" // Darker purple for start
             gradientBackgroundEnd="rgb(0, 40, 100)" // Darker blue for end
@@ -125,7 +133,7 @@ export const BentoGridItem = ({
             "group-hover/bento:translate-x-2 transition duration-200 relative md:h-full min-h-40 flex flex-col px-5 p-5 lg:p-10"
           )}
         >
-          {/* change the order of the title and des, font-extralight, remove text-xs text-neutral-600 dark:text-neutral-300 , change the text-color */}
+          {/* Title and Description */}
           <div
             className={`font-sans text-lg lg:text-3xl max-w-96 font-bold z-10`}
           >
@@ -135,7 +143,12 @@ export const BentoGridItem = ({
             {description}
           </div>
 
-          {id === 2 && <GridGlobe />}
+          {id === 2 && (
+            <div className="relative flex flex-col justify-center h-full">
+                <GridGlobe />
+              </div>
+          )}
+
 
           {id === 3 && (
             <div className="flex gap-1 lg:gap-5 w-fit absolute -right-3 lg:-right-2">
@@ -145,7 +158,7 @@ export const BentoGridItem = ({
                 {leftLists1.map((item, i) => (
                   <span
                     key={i}
-                    className="lg:py-4 lg:px-3 py-2 px-3 text-xs lg:text-base opacity-50 lg:opacity-100 rounded-lg text-czenter bg-[#10132E] w-32 h-16"
+                    className="lg:py-4 lg:px-3 py-2 px-3 text-xs lg:text-base opacity-25 lg:opacity-100 rounded-lg text-center bg-[#10132E] w-32 h-16"
                   >
                     {item}
                   </span>
@@ -157,7 +170,7 @@ export const BentoGridItem = ({
                 {leftLists2.map((item, i) => (
                   <span
                     key={i}
-                    className="lg:py-4 lg:px-3 py-2 px-3 text-xs lg:text-base opacity-50 lg:opacity-100 rounded-lg text-center bg-[#10132E] w-32 h-16"
+                    className="lg:py-4 lg:px-3 py-2 px-3 text-xs lg:text-base opacity-25 lg:opacity-100 rounded-lg text-center bg-[#10132E] w-32 h-16"
                   >
                     {item}
                   </span>
@@ -171,7 +184,7 @@ export const BentoGridItem = ({
                 {rightLists.map((item, i) => (
                   <span
                     key={i}
-                    className="lg:py-4 lg:px-3 py-2 px-3 text-xs lg:text-base opacity-50 lg:opacity-100 rounded-lg text-center bg-[#10132E] w-32 h-16"
+                    className="lg:py-4 lg:px-3 py-2 px-3 text-xs lg:text-base opacity-25 lg:opacity-100 rounded-lg text-center bg-[#10132E] w-32 h-16"
                   >
                     {item}
                   </span>
@@ -204,4 +217,3 @@ export const BentoGridItem = ({
     </div>
   );
 };
-

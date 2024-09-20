@@ -17,12 +17,13 @@ const Hero = () => {
           className="top-10 left-full h-[80vh] w-[50vw]"
           fill="#14B8A6"
         />
-        <Spotlight className="top-28 left-80 h-[80vh] w-[50vw]" fill="#84CC16" />
+        <Spotlight
+          className="top-28 left-80 h-[80vh] w-[50vw]"
+          fill="#84CC16"
+        />
       </div>
-      
-      <div
-        className="h-screen w-full dark:bg-[#064E3B] bg-[#F0FDF4] dark:bg-grid-white/[0.03] bg-grid-black-100/[0.2] absolute top-0 left-0 flex items-center justify-center"
-      >
+
+      <div className="h-screen w-full dark:bg-[#064E3B] bg-[#F0FDF4] dark:bg-grid-white/[0.03] bg-grid-black-100/[0.2] absolute top-0 left-0 flex items-center justify-center">
         <div className="absolute pointer-events-none inset-0 flex items-center justify-center dark:bg-black bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]" />
       </div>
 
@@ -38,11 +39,11 @@ const Hero = () => {
           />
 
           <p className="text-center md:tracking-wider mb-4 text-sm md:text-lg lg:text-2xl">
-          Hi! I&apos;m Nutan, a problem solver and software engineer.
+            Hi! I&apos;m Nutan, a problem solver and software engineer.
           </p>
 
           {/* Flexbox for Image and CTA */}
-          <div className="flex flex-col md:flex-row items-center justify-center space-x-6 space-y-6 md:space-y-0">
+          <div className="flex flex-col md:flex-row items-center justify-center space-y-6 md:space-y-0 md:space-x-6">
             {/* Image Section */}
             <div className="w-32 h-32 md:w-48 md:h-48 rounded-full overflow-hidden">
               <img
