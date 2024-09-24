@@ -11,7 +11,7 @@ export const gridItems = [
     title: "I enjoy building scalable, reliable software solutions.",
     description: "",
     className:
-      "lg:col-span-2 md:col-span-3 md:row-span-2 p-4 rounded-lg shadow-md bg-[#0A2540]", // Added padding, rounded corners, and shadow
+      "text-white lg:col-span-2 md:col-span-3 md:row-span-2 p-4 rounded-lg shadow-md bg-[#0A2540]", // Added padding, rounded corners, and shadow
     imgClassName: "",
     titleClassName: "justify-start",
     img: "",
@@ -22,7 +22,7 @@ export const gridItems = [
     title: "My tech stack",
     description: "I constantly try to improve",
     className:
-      "lg:col-span-3 md:col-span-3 md:row-span-2 p-4 rounded-lg shadow-md bg-[#0A2540] text-white ", // Added padding, rounded corners, and shadow
+      "text-white lg:col-span-3 md:col-span-3 md:row-span-2 p-4 rounded-lg shadow-md bg-[#0A2540] text-white ", // Added padding, rounded corners, and shadow
     imgClassName: "",
     titleClassName: "justify-center",
     img: "",
@@ -38,7 +38,7 @@ export const gridItems = [
       "I have a passion for creating innovative solutions that solve real-world problems.",
     // description: "About Me",
     className:
-      "lg:col-span-2 md:col-span-3 md:row-span-1 p-4 rounded-lg shadow-md bg-[#0A2540]", // Added padding, rounded corners, and shadow
+      "text-white lg:col-span-2 md:col-span-3 md:row-span-1 p-4 rounded-lg shadow-md bg-[#0A2540]", // Added padding, rounded corners, and shadow
     imgClassName: "",
     titleClassName: "justify-start",
     img: "/grid.svg",
@@ -53,7 +53,7 @@ export const gridItems = [
     // description: "Engineering",
     title: "Engineering",
     className:
-      "md:col-span-3 md:row-span-2 p-4 rounded-lg shadow-md bg-[#0A2540] relative", // Added padding, rounded corners, and shadow with relative positioning
+      "text-white lg:col-span-3 md:col-span-3 md:row-span-2 p-4 rounded-lg shadow-md bg-[#0A2540] relative", // Added padding, rounded corners, and shadow with relative positioning
     imgClassName: "absolute right-0 bottom-0 md:w-96 w-60",
     titleClassName: "justify-center md:justify-start lg:justify-center",
     img: "/b5.svg",
@@ -64,7 +64,7 @@ export const gridItems = [
     title: "Do you want to start a project together?",
     description: "",
     className:
-      "lg:col-span-2 md:col-span-3 md:row-span-1 p-4 rounded-lg shadow-md bg-[#0A2540] text-center", // Center-aligned with padding, rounded corners, and shadow
+      "text-white lg:col-span-2 md:col-span-3 md:row-span-1 p-4 rounded-lg shadow-md bg-[#0A2540] text-center", // Center-aligned with padding, rounded corners, and shadow
     imgClassName: "",
     titleClassName: "justify-center md:max-w-full max-w-60 text-center",
     img: "",

@@ -23,8 +23,8 @@ const Hero = () => {
         />
       </div>
 
-      <div className="h-screen w-full dark:bg-[#064E3B] bg-[#F0FDF4] dark:bg-grid-white/[0.03] bg-grid-black-100/[0.2] absolute top-0 left-0 flex items-center justify-center">
-        <div className="absolute pointer-events-none inset-0 flex items-center justify-center dark:bg-black bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]" />
+      <div className="h-screen w-full dark:bg-[#064E3B] bg-[#064E3B] dark:bg-grid-white/[0.03] bg-grid-white/[0.03] absolute top-0 left-0 flex items-center justify-center">
+        <div className="absolute pointer-events-none inset-0 flex items-center justify-center dark:bg-black bg-black [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]" />
       </div>
 
       <div className="flex justify-center relative my-20 z-10">
@@ -38,7 +38,7 @@ const Hero = () => {
             words="Let's build something great together"
           />
 
-          <p className="text-center md:tracking-wider mb-4 text-sm md:text-lg lg:text-2xl">
+          <p className="text-center md:tracking-wider mb-4 text-sm md:text-lg lg:text-2xl text-white">
             Hi! I&apos;m Nutan, a problem solver and software engineer.
           </p>
 
