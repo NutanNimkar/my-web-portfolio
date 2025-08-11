@@ -51,7 +51,7 @@ export default function GlobalError({ error }: { error: Error & { digest?: strin
               <div className="text-6xl mb-6">🌍</div>
               <h1 className="text-2xl font-bold mb-4">Interactive Globe Unavailable</h1>
               <p className="text-gray-300 mb-6">
-                We're experiencing issues with the 3D globe visualization. This might be due to:
+                We&apos;re experiencing issues with the 3D globe visualization. This might be due to:
               </p>
               <ul className="text-left text-sm text-gray-400 mb-6 space-y-2">
                 <li>• WebGL not supported in your browser</li>

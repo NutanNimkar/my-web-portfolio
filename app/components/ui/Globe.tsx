@@ -5,6 +5,7 @@ import ThreeGlobe from "three-globe";
 import { useThree, Object3DNode, Canvas, extend } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import countries from "@/data/globe.json";
+
 declare module "@react-three/fiber" {
   interface ThreeElements {
     threeGlobe: Object3DNode<ThreeGlobe, typeof ThreeGlobe>;
@@ -134,44 +135,6 @@ export function Globe({ globeConfig, data }: WorldProps) {
     ...globeConfig,
   };
 
-  useEffect(() => {
-    // Check WebGL availability
-    if (!isWebGLAvailable()) {
-      setWebGLError(true);
-      return;
-    }
-
-    if (globeRef.current) {
-      try {
-        _buildData();
-        _buildMaterial();
-      } catch (error) {
-        console.error('Error initializing globe:', error);
-        setWebGLError(true);
-      }
-    }
-  }, [globeRef.current]);
-
-  const _buildMaterial = () => {
-    if (!globeRef.current) return;
-
-    try {
-      const globeMaterial = globeRef.current.globeMaterial() as unknown as {
-        color: Color;
-        emissive: Color;
-        emissiveIntensity: number;
-        shininess: number;
-      };
-      globeMaterial.color = new Color(globeConfig.globeColor);
-      globeMaterial.emissive = new Color(globeConfig.emissive);
-      globeMaterial.emissiveIntensity = globeConfig.emissiveIntensity || 0.1;
-      globeMaterial.shininess = globeConfig.shininess || 0.9;
-    } catch (error) {
-      console.error('Error building material:', error);
-      setWebGLError(true);
-    }
-  };
-
   const _buildData = () => {
     try {
       const arcs = data;
@@ -212,26 +175,25 @@ export function Globe({ globeConfig, data }: WorldProps) {
     }
   };
 
-  useEffect(() => {
-    if (globeRef.current && globeData && !webGLError) {
-      try {
-        globeRef.current
-          .hexPolygonsData(countries.features)
-          .hexPolygonResolution(3)
-          .hexPolygonMargin(0.7)
-          .showAtmosphere(defaultProps.showAtmosphere)
-          .atmosphereColor(defaultProps.atmosphereColor)
-          .atmosphereAltitude(defaultProps.atmosphereAltitude)
-          .hexPolygonColor((e) => {
-            return defaultProps.polygonColor;
-          });
-        startAnimation();
-      } catch (error) {
-        console.error('Error setting up globe:', error);
-        setWebGLError(true);
-      }
+  const _buildMaterial = () => {
+    if (!globeRef.current) return;
+
+    try {
+      const globeMaterial = globeRef.current.globeMaterial() as unknown as {
+        color: Color;
+        emissive: Color;
+        emissiveIntensity: number;
+        shininess: number;
+      };
+      globeMaterial.color = new Color(globeConfig.globeColor);
+      globeMaterial.emissive = new Color(globeConfig.emissive);
+      globeMaterial.emissiveIntensity = globeConfig.emissiveIntensity || 0.1;
+      globeMaterial.shininess = globeConfig.shininess || 0.9;
+    } catch (error) {
+      console.error('Error building material:', error);
+      setWebGLError(true);
     }
-  }, [globeData, webGLError]);
+  };
 
   const startAnimation = () => {
     if (!globeRef.current || !globeData || webGLError) return;
@@ -276,6 +238,48 @@ export function Globe({ globeConfig, data }: WorldProps) {
     }
   };
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(() => {
+    // Check WebGL availability
+    if (!isWebGLAvailable()) {
+      setWebGLError(true);
+      return;
+    }
+
+    if (globeRef.current) {
+      try {
+        _buildData();
+        _buildMaterial();
+      } catch (error) {
+        console.error('Error initializing globe:', error);
+        setWebGLError(true);
+      }
+    }
+  }, []);
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(() => {
+    if (globeRef.current && globeData && !webGLError) {
+      try {
+        globeRef.current
+          .hexPolygonsData(countries.features)
+          .hexPolygonResolution(3)
+          .hexPolygonMargin(0.7)
+          .showAtmosphere(defaultProps.showAtmosphere)
+          .atmosphereColor(defaultProps.atmosphereColor)
+          .atmosphereAltitude(defaultProps.atmosphereAltitude)
+          .hexPolygonColor((e) => {
+            return defaultProps.polygonColor;
+          });
+        startAnimation();
+      } catch (error) {
+        console.error('Error setting up globe:', error);
+        setWebGLError(true);
+      }
+    }
+  }, [globeData, webGLError]);
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     if (!globeRef.current || !globeData || webGLError) return;
 
@@ -316,6 +320,7 @@ export function Globe({ globeConfig, data }: WorldProps) {
 export function WebGLRendererConfig() {
   const { gl, size } = useThree();
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     try {
       gl.setPixelRatio(Math.min(window.devicePixelRatio, 2)); // Limit pixel ratio for better performance
@@ -333,6 +338,7 @@ export function World(props: WorldProps) {
   const { globeConfig } = props;
   const [webGLError, setWebGLError] = useState(false);
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     if (!isWebGLAvailable()) {
       setWebGLError(true);

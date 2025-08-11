@@ -33,7 +33,7 @@ function isWebGLAvailable() {
   }
 }
 
-const GridGlobe = React.memo(() => {
+const GridGlobe = React.memo(function GridGlobe() {
   const [webGLAvailable, setWebGLAvailable] = useState<boolean | null>(null);
   const [error, setError] = useState(false);
 
