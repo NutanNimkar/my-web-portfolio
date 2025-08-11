@@ -1,13 +1,57 @@
 "use client";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import dynamic from "next/dynamic";
 
 const World = dynamic(() => import("./Globe").then((m) => m.World), {
   ssr: false,
+  loading: () => (
+    <div className="flex items-center justify-center h-full w-full bg-gradient-to-br from-blue-900 to-purple-900 rounded-lg">
+      <div className="text-center text-white">
+        <div className="text-4xl mb-4 animate-pulse">🌍</div>
+        <div className="text-lg font-semibold animate-pulse">Loading Globe...</div>
+        <div className="mt-4">
+          <div className="w-16 h-1 bg-white/20 rounded-full mx-auto overflow-hidden">
+            <div className="h-full bg-white/60 rounded-full animate-pulse" style={{ width: '60%' }}></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  ),
 });
 
-const GridGlobe = () => {
+// WebGL detection function
+function isWebGLAvailable() {
+  if (typeof window === 'undefined') return false;
+  
+  try {
+    const canvas = document.createElement('canvas');
+    return !!(window.WebGLRenderingContext && 
+      (canvas.getContext('webgl') || canvas.getContext('experimental-webgl')));
+  } catch (e) {
+    return false;
+  }
+}
+
+const GridGlobe = React.memo(() => {
+  const [webGLAvailable, setWebGLAvailable] = useState<boolean | null>(null);
+  const [error, setError] = useState(false);
+
+  useEffect(() => {
+    // Check WebGL availability on client side
+    const checkWebGL = () => {
+      const available = isWebGLAvailable();
+      setWebGLAvailable(available);
+      if (!available) {
+        setError(true);
+      }
+    };
+
+    // Delay check to ensure DOM is ready
+    const timer = setTimeout(checkWebGL, 100);
+    return () => clearTimeout(timer);
+  }, []);
+
   const globeConfig = {
     pointSize: 4,
     globeColor: "#062056",
@@ -394,6 +438,42 @@ const GridGlobe = () => {
     },
   ];
 
+  // Show loading state while checking WebGL
+  if (webGLAvailable === null) {
+    return (
+      <div className="flex items-center justify-center absolute -left-5 top-36 md:top-40 w-full h-full">
+        <div className="max-w-7xl mx-auto w-full relative overflow-hidden h-96 px-4">
+          <div className="absolute w-full bottom-0 inset-x-0 h-40 bg-gradient-to-b pointer-events-none select-none from-transparent dark:to-black to-white z-40" />
+          <div className="absolute w-full h-72 md:h-full z-10 flex items-center justify-center">
+            <div className="text-center text-white">
+              <div className="text-4xl mb-4 animate-pulse">🌍</div>
+              <div className="text-lg font-semibold">Initializing...</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Show error state if WebGL is not available
+  if (error || webGLAvailable === false) {
+    return (
+      <div className="flex items-center justify-center absolute -left-5 top-36 md:top-40 w-full h-full">
+        <div className="max-w-7xl mx-auto w-full relative overflow-hidden h-96 px-4">
+          <div className="absolute w-full bottom-0 inset-x-0 h-40 bg-gradient-to-b pointer-events-none select-none from-transparent dark:to-black to-white z-40" />
+          <div className="absolute w-full h-72 md:h-full z-10 flex items-center justify-center">
+            <div className="text-center text-white">
+              <div className="text-4xl mb-4">🌍</div>
+              <div className="text-lg font-semibold">Interactive Globe</div>
+              <div className="text-sm opacity-75">WebGL not available</div>
+              <div className="text-xs opacity-50 mt-2">Try updating your browser or enabling hardware acceleration</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     // remove dark:bg-black bg-white h-screen md:h-auto  w-full flex-row py-20
     // change absolute -left-5 top-36, add w-full h-full md:top-40
@@ -408,5 +488,5 @@ const GridGlobe = () => {
       </div>
     </div>
   );
-};
+});
 export default GridGlobe;

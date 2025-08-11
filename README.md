@@ -1,36 +1,90 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# My Web Portfolio
+
+A modern, responsive portfolio website built with Next.js, TypeScript, and Three.js.
+
+## Features
+
+- **Interactive 3D Globe**: Powered by Three.js and three-globe
+- **Responsive Design**: Works on all devices
+- **Modern UI**: Built with Tailwind CSS and Framer Motion
+- **WebGL Error Handling**: Graceful fallbacks for unsupported browsers
+
+## WebGL Support
+
+The interactive globe requires WebGL support. If WebGL is not available, the application will:
+
+1. **Detect WebGL availability** on component mount
+2. **Show a loading state** while checking
+3. **Display a fallback UI** if WebGL is not supported
+4. **Provide helpful guidance** for enabling WebGL
+
+### Troubleshooting WebGL Issues
+
+If you see the fallback globe instead of the interactive one:
+
+1. **Update your browser** to the latest version
+2. **Enable hardware acceleration** in your browser settings
+3. **Update graphics drivers** on your system
+4. **Try a different browser** (Chrome, Firefox, Safari, Edge)
+
+### Browser Compatibility
+
+- ✅ Chrome 51+
+- ✅ Firefox 51+
+- ✅ Safari 10+
+- ✅ Edge 79+
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
+# Install dependencies
+npm install
+
+# Run development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
+# Build for production
+npm run build
+
+# Start production server
+npm start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Technologies Used
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Next.js 14** - React framework
+- **TypeScript** - Type safety
+- **Three.js** - 3D graphics
+- **three-globe** - Globe visualization
+- **Tailwind CSS** - Styling
+- **Framer Motion** - Animations
+- **React Three Fiber** - Three.js React integration
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Project Structure
 
-## Learn More
+```
+my-web-portfolio/
+├── app/
+│   ├── components/
+│   │   ├── ui/
+│   │   │   ├── Globe.tsx          # Main globe component
+│   │   │   └── GridGlobe.tsx      # Grid wrapper with error handling
+│   │   └── ...
+│   ├── global-error.tsx           # Global error boundary
+│   └── ...
+└── ...
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Recent Improvements
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### WebGL Error Handling (Latest)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- ✅ Added WebGL detection and fallback UI
+- ✅ Improved error boundaries for Three.js components
+- ✅ Added loading states and user feedback
+- ✅ Performance optimizations with React.memo
+- ✅ Better debugging and error logging
 
-## Deploy on Vercel
+## License
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+MIT License - see LICENSE file for details.
