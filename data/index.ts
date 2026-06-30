@@ -1,6 +1,7 @@
 export const navItems = [
   { name: "About", link: "#about" },
   { name: "Projects", link: "#projects" },
+  { name: "Skills", link: "#skills" },
   { name: "Experience", link: "#experience" },
   { name: "Contact", link: "#contact" },
 ];
@@ -8,10 +9,10 @@ export const navItems = [
 export const gridItems = [
   {
     id: 2,
-    title: "I enjoy building scalable, reliable software solutions.",
+    title: "Based in Toronto, open to remote opportunities worldwide.",
     description: "",
     className:
-      "text-white lg:col-span-2 md:col-span-3 md:row-span-2 p-4 rounded-lg shadow-md bg-[#0A2540]", // Added padding, rounded corners, and shadow
+      "text-white lg:col-span-2 md:col-span-3 md:row-span-2 p-4 rounded-lg shadow-md bg-[#0A2540]",
     imgClassName: "",
     titleClassName: "justify-start",
     img: "",
@@ -31,33 +32,26 @@ export const gridItems = [
   {
     id: 4,
     title: "About Me",
-    // title: "I have a passion for creating innovative solutions that solve real-world problems.",
-    subTitle: "",
-    // description: "Currently working on Goalseek, a collaborative goal-tracking app.",
     description:
-      "I have a passion for creating innovative solutions that solve real-world problems.",
-    // description: "About Me",
+      "Backend & data engineer with 2+ years building production pipelines, distributed systems, and ML-ready data infrastructure at a health-tech AI company.",
     className:
-      "text-white lg:col-span-2 md:col-span-3 md:row-span-1 p-4 rounded-lg shadow-md bg-[#0A2540]", // Added padding, rounded corners, and shadow
+      "text-white lg:col-span-2 md:col-span-3 md:row-span-1 p-4 rounded-lg shadow-md bg-[#0A2540]",
     imgClassName: "",
     titleClassName: "justify-start",
-    img: "/grid.svg",
-    spareImg: "/b4.svg",
+    img: "",
+    spareImg: "",
   },
-  // "As an aspiring software engineer, I'm passionate about exploring all facets of software development, from low-level programming to frontend and backend engineering. With experience in programming languages like JavaScript, Python, Java, and SQL, I've successfully completed numerous full-stack projects leveraging various technologies."
   {
     id: 5,
-    // title: "As an aspiring software engineer, I'm passionate about exploring all facets of software development, from low-level programming to frontend and backend engineering. With experience in programming languages like JavaScript, Python, Java, and SQL, I've successfully completed numerous full-stack projects leveraging various technologies.",
+    title: "I love building things that scale.",
     description:
-      "As an aspiring software engineer, I'm passionate about exploring all facets of software development, from low-level programming to frontend and backend engineering. With experience in programming languages like JavaScript, Python, Java, and SQL, I've successfully completed numerous full-stack projects leveraging various technologies.",
-    // description: "Engineering",
-    title: "Engineering",
+      "From fault-tolerant data pipelines processing millions of records daily to observability tools that give teams real-time visibility — I care about systems that hold up in production.",
     className:
-      "text-white lg:col-span-3 md:col-span-3 md:row-span-2 p-4 rounded-lg shadow-md bg-[#0A2540] relative", // Added padding, rounded corners, and shadow with relative positioning
-    imgClassName: "absolute right-0 bottom-0 md:w-96 w-60",
+      "text-white lg:col-span-3 md:col-span-3 md:row-span-2 p-4 rounded-lg shadow-md bg-[#0A2540] relative",
+    imgClassName: "",
     titleClassName: "justify-center md:justify-start lg:justify-center",
-    img: "/b5.svg",
-    spareImg: "/grid.svg",
+    img: "",
+    spareImg: "",
   },
   {
     id: 6,
@@ -75,6 +69,14 @@ export const gridItems = [
 export const projects = [
   {
     id: 1,
+    title: "AI Agent Workflow for CRM Automation",
+    des: "LLM-driven workflow automation system built with the Anthropic Claude API and Salesforce API. Automates manual CRM data updates, tracks edge cases, and generates performance reports to improve data consistency across Salesforce and PostgreSQL.",
+    img: "/dall-e.svg",
+    iconLists: ["/python.svg", "/psql.svg"],
+    link: "https://github.com/NutanNimkar",
+  },
+  {
+    id: 2,
     title: "GoalSeek - Goal Tracking App",
     des: "Achieve your goals with Goalseek, a collaborative app that leverages peer support and progress tracking to help users stay on track and succeed.",
     img: "/Logo.svg",
@@ -82,7 +84,7 @@ export const projects = [
     link: "https://github.com/NutanNimkar/GoalTrackApp/tree/working-branch",
   },
   {
-    id: 2,
+    id: 3,
     title: "Hotel Booking App",
     des: "Book your stay with HotelApp, a convenient platform that lets users register and reserve rooms across various hotel chains for a seamless booking experience",
     img: "/hotel.svg",
@@ -97,7 +99,7 @@ export const projects = [
     link: "https://github.com/NutanNimkar/HotelApp",
   },
   {
-    id: 3,
+    id: 4,
     title: "Reps and Calorie Tracking App",
     des: "Track your fitness journey with our app, a comprehensive tool that helps users monitor exercise reps and calories to stay on top of their health goals.",
     img: "/reps.svg",
@@ -105,7 +107,7 @@ export const projects = [
     link: "https://github.com/NutanNimkar/RepCalTracker",
   },
   {
-    id: 4,
+    id: 5,
     title: "TradingBot - Discord Bot",
     des: "Get real-time stock predictions with our Discord bot, using historical data to forecast prices and provide insights on whether to buy or not.",
     img: "/dall-e.svg",
@@ -123,44 +125,33 @@ export const projects = [
 export const workExperience = [
   {
     id: 1,
-    title: "Software Developer",
+    title: "Software Engineer – Backend & Platform Systems",
+    company: "Healwell AI",
+    period: "Jan 2025 – Present",
+    desc: "Built 4 production Dagster pipelines processing millions of clinical records daily across 50+ assets—taking raw data through ingestion, classification, cleaning, and reshaping into NLP-ready datasets. Architected fault-tolerant validation layers to enforce data integrity contracts. Improved production pipeline reliability by 80% with asset-level observability and owned the full infra stack: Terraform, Docker, Kubernetes, and GitHub Actions.",
+    tech: "Python, Dagster, Databricks, PySpark, PostgreSQL, Streamlit, Salesforce API, Terraform, Docker, Kubernetes, GitHub Actions",
+    className: "md:col-span-2",
+    thumbnail: "/code.svg",
+  },
+  {
+    id: 2,
+    title: "Software Development Intern",
     company: "Jana Corporation",
-    desc: "Contributed to developing a web-based platform using React.js, Redux Toolkit, Tailwind CSS, and .NET, enhancing both front-end and back-end functionality. Helped reduce reported issues by 60% and improved team efficiency by 30%.",
-    tech: "React.js, Redux, Tailwind CSS, JavaScript, TypeScript, .NET, C#",
+    period: "May 2023 – Aug 2023",
+    desc: "Resolved 20+ bugs across navigation, exception handling, and UI responsiveness using .NET and React, cutting the active bug backlog by 20%. Shipped a risk analysis full-stack application on an agile team, accelerating the production milestone by 60 days.",
+    tech: "React.js, .NET, C#, JavaScript, TypeScript",
     className: "md:col-span-2",
     thumbnail: "/sof.png",
   },
-  // Resolved software defects, resulting in a 20% reduction in issues and a 25% decrease in load time.
-  {
-    id: 2,
-    title: "Full Stack Developer",
-    company: "Cision",
-    desc: "Led the development of a Disclaimer modal using TypeScript, React Hooks, and Redux, with Java and Spring Boot on the backend, improving user experience by 20%. Automated tests with React Testing Library, reducing bugs by 15%.",
-    className: "md:col-span-2", // change to md:col-span-2
-    tech: "React.js, JavaScript, TypeScript, Java, Spring Boot, React Testing Library",
-    thumbnail: "/code.svg",
-  },
-  // Implemented 25+ feature flags, enhancing user management and increasing deployment efficiency by 15%.
   {
     id: 3,
-    title: "Software Developer",
-    company: "Trading Central",
-    // Contributed to developing features like a chart on a trading platform using AngularJS and API integration for real-time analysis.
-    // Assisted in streamlining a tree structure and filter method, converting a legacy PERL page to AngularJS, boosting user interaction by 10%.
-    desc: "Contributed to developing features like a chart on a trading platform using AngularJS and API integration for real-time analysis. Collaborated across teams using Git/GitHub and Jira, contributing to product discussions, roadmaps, and code reviews to enhance knowledge-sharing and project management.",
-    tech: "AngularJS, TypeScript, JavaScript, HTML, CSS, AWS",
-    className: "md:col-span-2", // change to md:col-span-2
-    thumbnail: "/comp.svg",
-  },
-  {
-    id: 4,
-    title: "IT Analyst",
-    company: "Innovation, Science, Economic Developement Canada",
-    // Improved project coordination by 40% and reduced change conflicts by 40% by bridging communication gaps between IT teams and stakeholders.
-    desc: "Reviewed and created 100+ RFCs using Infoweb, ensuring smooth change management. Developed documentation with Excel Macros and Microsoft Office tools (Visio, PowerPoint) to support scheduling in ITSM.",
-    tech: "Infoweb, Excel Macros, Microsoft Office, Visio, PowerPoint",
+    title: "Software Engineering Intern",
+    company: "Cision",
+    period: "Sep 2022 – Dec 2022",
+    desc: "Built a reusable notification modal in React, TypeScript, and Java for 75,000+ users, reducing confusion on invalid routes. Implemented automated test coverage and CI-integrated validation workflows, directly improving system release confidence and reliability.",
     className: "md:col-span-2",
-    thumbnail: "/lap.svg",
+    tech: "React.js, TypeScript, Java, Spring Boot, React Testing Library",
+    thumbnail: "/code.svg",
   },
 ];
 
@@ -180,3 +171,24 @@ export const socialMedia = [
     link: "https://www.linkedin.com/in/nutannimkar",
   },
 ];
+
+export const skillsData = {
+  languages: [
+    { name: "Python", icon: "/python.svg", proficiency: 90 },
+    { name: "SQL", icon: "/sql.svg", proficiency: 85 },
+    { name: "Go", icon: "/go.svg", proficiency: 70 },
+    { name: "Java", icon: "/java.svg", proficiency: 75 },
+  ],
+  dataEngineering: [
+    { name: "Dagster", icon: "/dagster.svg", proficiency: 85 },
+    { name: "Databricks", icon: "/databricks.svg", proficiency: 80 },
+    { name: "PySpark", icon: "/spark.svg", proficiency: 75 },
+    { name: "Streamlit", icon: "/streamlit.svg", proficiency: 80 },
+  ],
+  infrastructure: [
+    { name: "Docker", icon: "/dock.svg", proficiency: 80 },
+    { name: "Kubernetes", icon: "/kubernetes.svg", proficiency: 70 },
+    { name: "Terraform", icon: "/terraform.svg", proficiency: 75 },
+    { name: "GitHub Actions", icon: "/git.svg", proficiency: 80 },
+  ],
+};
