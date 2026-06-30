@@ -74,9 +74,7 @@ export const BentoGridItem = ({
         className
       )}
       style={{
-        background: "rgb(2,0,36)",
-        backgroundColor:
-          "linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(5,65,33,0.986453956582633) 47%, rgba(8,73,87,1) 100%)",
+        background: "#13132a",
       }}
     >
       <div className={`${id === 6 && "flex justify-center"} h-full`}>
@@ -144,6 +142,16 @@ export const BentoGridItem = ({
             "group-hover/bento:translate-x-2 transition duration-200 relative md:h-full min-h-40 flex flex-col px-5 p-5 lg:p-10"
           )}
         >
+          {/* "Currently building" live badge for id:1 */}
+          {id === 1 && (
+            <div className="flex items-center gap-2 mb-3">
+              <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse shrink-0" />
+              <span className="text-xs font-semibold uppercase tracking-widest text-green-400">
+                Live project
+              </span>
+            </div>
+          )}
+
           {/* Title and Description */}
           <div
             className={`font-sans text-lg lg:text-3xl max-w-96 font-bold z-10`}

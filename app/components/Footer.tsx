@@ -7,14 +7,14 @@ const Footer = () => {
     <footer className="w-full pb-10 mb-[100px] md:mb-5" id="contact">
       <div className="flex flex-col items-center">
         <h1 className=" text-white heading lg:max-w-[45vw]">
-          Let&apos;s build something amazing together.
+          Open to new <span className="text-purple">opportunities</span> — let&apos;s talk.
         </h1>
         <a
           href="mailto:nutanchandra067@gmail.com"
           className="mt-5 sm:mt-6"
         >
           <MagicButton
-            title="Let's get in touch"
+            title="Get in touch"
             icon={<FaLocationArrow />}
             position="right"
           />
