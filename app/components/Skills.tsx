@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import { motion } from "framer-motion";
 import { skillsData } from "@/data";
 
@@ -9,122 +9,149 @@ interface Skill {
   proficiency: number;
 }
 
-interface SkillCategory {
-  key: keyof typeof skillsData;
-  title: string;
-  color: string;
-}
-
-const categories: SkillCategory[] = [
-  { key: "languages",       title: "Languages",         color: "from-blue-500 to-cyan-500" },
-  { key: "dataEngineering", title: "Data Engineering",  color: "from-cyan-500 to-teal-500" },
-  { key: "infrastructure",  title: "Infrastructure",    color: "from-indigo-500 to-blue-500" },
+const categoryMeta: { key: keyof typeof skillsData; label: string; accent: string }[] = [
+  { key: "aiAndLlms",       label: "AI & LLMs",        accent: "#f59e0b" },
+  { key: "languages",       label: "Languages",        accent: "#818cf8" },
+  { key: "dataEngineering", label: "Data Engineering", accent: "#a78bfa" },
+  { key: "infrastructure",  label: "Infrastructure",   accent: "#c084fc" },
 ];
 
-const getProficiencyLabel = (p: number) => {
-  if (p >= 90) return { label: "Expert",       color: "text-green-400" };
-  if (p >= 80) return { label: "Advanced",     color: "text-blue-400" };
-  if (p >= 70) return { label: "Intermediate", color: "text-yellow-400" };
-  return              { label: "Familiar",     color: "text-orange-400" };
+const proficiencyLabel = (p: number): { label: string; color: string } => {
+  if (p >= 90) return { label: "Expert",       color: "#34d399" };
+  if (p >= 80) return { label: "Advanced",     color: "#818cf8" };
+  if (p >= 70) return { label: "Intermediate", color: "#a78bfa" };
+  return              { label: "Familiar",     color: "#f472b6" };
 };
 
-const SkillCard = ({ skill, index }: { skill: Skill; index: number }) => {
-  const { label, color } = getProficiencyLabel(skill.proficiency);
+const SkillCard = ({
+  skill,
+  accent,
+  index,
+}: {
+  skill: Skill;
+  accent: string;
+  index: number;
+}) => {
+  const { label, color } = proficiencyLabel(skill.proficiency);
+
   return (
     <motion.div
-      initial={{ opacity: 0, y: 16 }}
+      initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.35, delay: index * 0.06 }}
-      whileHover={{ scale: 1.04, transition: { duration: 0.15 } }}
-      className="group relative bg-gradient-to-br from-gray-900 to-gray-800 rounded-xl p-5 border border-gray-700 hover:border-purple-500 transition-colors duration-300"
+      transition={{ duration: 0.3, delay: index * 0.04 }}
+      className="group"
+      style={{ perspective: "800px" }}
     >
-      <div className="flex items-center gap-4 mb-3">
-        <div className="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform duration-300">
-          <img
-            src={skill.icon}
-            alt={skill.name}
-            className="w-6 h-6 object-contain"
-            onError={(e) => {
-              const img = e.target as HTMLImageElement;
-              img.style.display = "none";
-              const fallback = img.nextElementSibling as HTMLElement;
-              if (fallback) fallback.classList.remove("hidden");
-            }}
-          />
-          <span className="text-lg font-bold text-purple-400 hidden">
-            {skill.name.charAt(0)}
-          </span>
-        </div>
-        <div>
-          <h3 className="font-semibold text-white text-sm group-hover:text-purple-400 transition-colors duration-300">
+      {/* Flip container */}
+      <div
+        className="relative h-36 w-full transition-transform duration-500 ease-in-out"
+        style={{ transformStyle: "preserve-3d" }}
+      >
+        {/* Front face */}
+        <div
+          className="absolute inset-0 rounded-xl border border-white/[0.08] flex flex-col items-center justify-center gap-3 px-3 group-hover:[transform:rotateY(180deg)] transition-transform duration-500"
+          style={{
+            backfaceVisibility: "hidden",
+            background: "#13132a",
+            willChange: "transform",
+          }}
+        >
+          {/* Coloured top bar */}
+          <div className="absolute top-0 left-0 right-0 h-0.5 rounded-t-xl" style={{ background: accent }} />
+
+          <div
+            className="w-11 h-11 rounded-lg flex items-center justify-center"
+            style={{ background: `${accent}20`, border: `1px solid ${accent}40` }}
+          >
+            <img
+              src={skill.icon}
+              alt={skill.name}
+              className="w-6 h-6 object-contain"
+              style={{ filter: "brightness(0) invert(1)" }}
+              onError={(e) => {
+                const img = e.target as HTMLImageElement;
+                img.style.display = "none";
+                const span = img.nextElementSibling as HTMLElement;
+                if (span) span.classList.remove("hidden");
+              }}
+            />
+            <span className="text-base font-bold hidden" style={{ color: accent }}>
+              {skill.name.charAt(0)}
+            </span>
+          </div>
+
+          <p className="text-xs font-semibold text-white text-center leading-tight">
             {skill.name}
-          </h3>
-          <p className={`text-xs ${color}`}>{label}</p>
+          </p>
+
+          {/* Flip hint */}
+          <p className="text-[10px] text-gray-600 absolute bottom-2">hover to see level</p>
+        </div>
+
+        {/* Back face */}
+        <div
+          className="absolute inset-0 rounded-xl border flex flex-col items-center justify-center gap-2.5 px-4 [transform:rotateY(180deg)] group-hover:[transform:rotateY(360deg)] transition-transform duration-500"
+          style={{
+            backfaceVisibility: "hidden",
+            background: "#1a1a35",
+            borderColor: `${accent}50`,
+            willChange: "transform",
+          }}
+        >
+          <div className="absolute top-0 left-0 right-0 h-0.5 rounded-t-xl" style={{ background: accent }} />
+
+          <p className="text-sm font-bold text-white text-center">{skill.name}</p>
+
+          <p className="text-xs font-semibold" style={{ color }}>
+            {label}
+          </p>
+
+          {/* Proficiency bar */}
+          <div className="w-full bg-white/10 rounded-full h-1.5 overflow-hidden">
+            <div
+              className="h-full rounded-full transition-all duration-700 delay-200"
+              style={{
+                width: `${skill.proficiency}%`,
+                background: `linear-gradient(to right, ${accent}, ${color})`,
+              }}
+            />
+          </div>
+
+          <p className="text-[11px] font-mono" style={{ color: accent }}>
+            {skill.proficiency}%
+          </p>
         </div>
       </div>
-      <div className="w-full bg-gray-700 rounded-full h-1.5">
-        <motion.div
-          initial={{ width: 0 }}
-          animate={{ width: `${skill.proficiency}%` }}
-          transition={{ duration: 0.8, delay: index * 0.06 }}
-          className="bg-gradient-to-r from-purple-500 to-pink-500 h-1.5 rounded-full"
-        />
-      </div>
-      <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-pink-500/10 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
     </motion.div>
   );
 };
 
 const Skills = () => {
-  const [active, setActive] = useState<string>("all");
-
-  const allSkills = categories.flatMap((c) => skillsData[c.key]);
-  const displayed =
-    active === "all"
-      ? allSkills
-      : skillsData[active as keyof typeof skillsData] ?? [];
-
   return (
-    <div className="py-20 w-full" id="skills">
+    <div className="py-16 w-full" id="skills">
       <h1 className="heading text-white mb-12">
         My <span className="text-purple">Skills</span>
       </h1>
 
-      {/* Filter tabs */}
-      <div className="flex flex-wrap justify-center gap-3 mb-10">
-        <motion.button
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          onClick={() => setActive("all")}
-          className={`px-5 py-2 rounded-full text-sm font-semibold transition-all duration-300 ${
-            active === "all"
-              ? "bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-lg"
-              : "bg-gray-800 text-gray-300 hover:bg-gray-700"
-          }`}
-        >
-          All
-        </motion.button>
-        {categories.map((cat) => (
-          <motion.button
-            key={cat.key}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={() => setActive(cat.key)}
-            className={`px-5 py-2 rounded-full text-sm font-semibold transition-all duration-300 ${
-              active === cat.key
-                ? `bg-gradient-to-r ${cat.color} text-white shadow-lg`
-                : "bg-gray-800 text-gray-300 hover:bg-gray-700"
-            }`}
-          >
-            {cat.title}
-          </motion.button>
-        ))}
-      </div>
+      <div className="flex flex-col gap-10 max-w-5xl mx-auto">
+        {categoryMeta.map(({ key, label, accent }) => (
+          <div key={key}>
+            {/* Category header */}
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-3 h-3 rounded-full" style={{ background: accent }} />
+              <h3 className="text-sm font-semibold uppercase tracking-widest text-gray-400">
+                {label}
+              </h3>
+              <div className="flex-1 h-px bg-white/5" />
+            </div>
 
-      {/* Skills grid */}
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 max-w-5xl mx-auto">
-        {displayed.map((skill, i) => (
-          <SkillCard key={skill.name} skill={skill} index={i} />
+            {/* Skills row */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+              {skillsData[key].map((skill, i) => (
+                <SkillCard key={skill.name} skill={skill} accent={accent} index={i} />
+              ))}
+            </div>
+          </div>
         ))}
       </div>
     </div>
